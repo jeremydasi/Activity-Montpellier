@@ -19,3 +19,11 @@ mongoose
   })
   .then(() => console.log("Connecté à MongoDB"))
   .catch((err) => console.error("Erreur de connexion à MongoDB", err));
+
+app.get('/', (req, res) => {
+    res.send("Bienvenue sur le site de recherche d'activité");
+})
+
+app.listen(PORT, () => {
+    console.log(`Serveur connecté sur le port ${PORT}`)
+})
