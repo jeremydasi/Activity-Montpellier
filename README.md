@@ -1,7 +1,7 @@
-install dependencies
+Install dependencies
 
 `npm install`
 
-start the project
+Start the project
 
 `npm start`
