@@ -1,5 +1,5 @@
 install dependencies
-```npm install```
+`npm install`
 
 start the project
-```npm start```
+`npm start`
