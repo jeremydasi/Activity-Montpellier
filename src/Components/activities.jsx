@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "./card";
+import '../Styles/activities.scss'
 
 const Activities = () => {
   const [activities, setActivities] = useState([]);
@@ -22,15 +23,17 @@ const Activities = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Liste des Activités</h1>
-      {activities.length === 0 ? (
-        <p>Aucune activité trouvée</p>
-      ) : (
-        activities.map((activity) => (
-          <Card key={activity._id} activity={activity} />
-        ))
-      )}
+    <div className="activities">
+      <h1 className="title">Liste des Activités à faire sur Montpellier</h1>
+        <div>
+          {activities.length === 0 ? (
+            <p>Aucune activité trouvée</p>
+          ) : (
+            activities.map((activity) => (
+              <Card key={activity._id} activity={activity} />
+            ))
+          )}
+        </div>
     </div>
   );
 };
