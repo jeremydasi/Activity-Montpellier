@@ -8,11 +8,10 @@ const routeActivity = require("./routes/routeActivity");
 dotenv.config();
 
 const app = express();
-const PORT = normalizePort(process.env.PORT || "5000");
-app.set("port", PORT);
+const PORT = 5000;
 
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "http://localhost:8000",
 }));
 app.use(bodyParser.json());
 
