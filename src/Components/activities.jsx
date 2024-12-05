@@ -27,7 +27,7 @@ const Activities = () => {
       <h1 className="title">Liste des Activités à faire sur Montpellier</h1>
         <div>
           {activities.length === 0 ? (
-            <p>Aucune activité trouvée</p>
+            <p className="activityNone">Aucune activité trouvée</p>
           ) : (
             activities.map((activity) => (
               <Card key={activity._id} activity={activity} />

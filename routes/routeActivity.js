@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
       description,
       localisation,
       category,
-      price,
+      price
     });
     await activity.save();
     res.status(201).json(activity);
