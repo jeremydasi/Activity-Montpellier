@@ -4,12 +4,12 @@ const Activity = require("../models/activity_schema");
 
 router.post("/", async (req, res) => {
   try {
-    const { name, description, localisation, type, price } = req.body;
+    const { name, description, localisation, category, price } = req.body;
     const activity = new Activity({
       name,
       description,
       localisation,
-      type,
+      category,
       price,
     });
     await activity.save();
@@ -34,10 +34,10 @@ router.get("/", async (req, res) => {
 
 router.get("/recherche", async (req, res) => {
   try {
-    const { localisation, type, maxPrice } = req.query;
+    const { localisation, category, maxPrice } = req.query;
     const query = {};
     if (localisation) query.localisation = localisation;
-    if (type) query.type = type;
+    if (category) query.category = category;
     if (maxPrice) query.price = { $lte: Number(maxPrice) };
     const activities = await Activity.find(query);
     res.status(200).json(activities);

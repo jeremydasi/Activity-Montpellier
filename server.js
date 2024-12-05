@@ -8,13 +8,16 @@ const routeActivity = require("./routes/routeActivity");
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = normalizePort(process.env.PORT || "5000");
+app.set("port", PORT);
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000",
+}));
 app.use(bodyParser.json());
 
 mongoose
-  .connect(process.env.MONGODB_URL)
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("Connecté à MongoDB"))
   .catch((err) => console.error("Erreur de connexion à MongoDB", err));
 
@@ -25,5 +28,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Serveur connecté sur le port http://localhost:${PORT}`);
+  console.log(`Serveur connecté sur le port ${PORT}`);
 });
