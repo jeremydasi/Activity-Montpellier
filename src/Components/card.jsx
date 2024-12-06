@@ -1,5 +1,4 @@
 import React from "react";
-import '../Styles/card.scss';
 
 const Card = ({ activity }) => {
     return(

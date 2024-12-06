@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Card from "./card.jsx";
-import '../Styles/activities.scss'
 
 const Activities = () => {
   const [activities, setActivities] = useState([]);

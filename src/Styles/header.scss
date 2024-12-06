@@ -1,5 +1,7 @@
+@import './color.scss';
+
 .header {
-    background-color: #E6DAC6;
+    background-color: $header-background;
     height: 100px;
     display: flex;
     justify-content: center;

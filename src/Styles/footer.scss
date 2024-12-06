@@ -1,0 +1,17 @@
+@import './color.scss';
+
+.footer-container {
+    background-color: $footer-background;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ffffff;
+}
