@@ -1,31 +1,53 @@
-const bodyParser = require("body-parser");
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const routeActivity = require("./routes/routeActivity");
+import bodyParser from "body-parser";
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import routeActivity from "./routes/routeActivity.js";
+import http from "http";
+import app from "./App.js"; 
 
-dotenv.config();
+const normalizePort = (val) => {
+  const port = parseInt(val, 10);
 
-const app = express();
-const PORT = 5000;
+  if (isNaN(port)) {
+    return val;
+  }
+  if (port >= 0) {
+    return port;
+  }
+  return false;
+};
+const port = normalizePort(process.env.PORT || "5000");
+app.set("port", port);
 
-app.use(cors({
-  origin: "http://localhost:8000",
-}));
-app.use(bodyParser.json());
+const errorHandler = (error) => {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
+  const address = server.address();
+  const bind =
+    typeof address === "string" ? "pipe " + address : "port: " + port;
+  switch (error.code) {
+    case "EACCES":
+      console.error(bind + " requires elevated privileges.");
+      process.exit(1);
+      break;
+    case "EADDRINUSE":
+      console.error(bind + " is already in use.");
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+};
 
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => console.log("Connecté à MongoDB"))
-  .catch((err) => console.error("Erreur de connexion à MongoDB", err));
+const server = http.createServer(app);
 
-app.use('/activities', routeActivity);
-
-app.get("/", (req, res) => {
-  res.send("Bienvenue sur le site de recherche d'activité");
+server.on("error", errorHandler);
+server.on("listening", () => {
+  const address = server.address();
+  const bind = typeof address === "string" ? "pipe " + address : "port " + port;
+  console.log("Listening on " + bind);
 });
 
-app.listen(PORT, () => {
-  console.log(`Serveur connecté sur le port ${PORT}`);
-});
+server.listen(port);

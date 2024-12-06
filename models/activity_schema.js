@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const activitySchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -8,4 +8,6 @@ const activitySchema = new mongoose.Schema({
   price: { type: Number, required: true },
 });
 
-module.exports = mongoose.model("Activity", activitySchema);
+const Activity = mongoose.model("Activity", activitySchema);
+export default Activity;
+

@@ -1,5 +1,5 @@
-import Activities from "./Components/activities";
-import Header from "./Components/header";
+import Activities from "./Components/activities.jsx";
+import Header from "./Components/header.jsx";
 
 function App() {
   return (
