@@ -1,9 +1,10 @@
 import React from "react";
+import SearchBar from "./searchBar";
 
-const Header = () => {
+const Header = ({ onSearch }) => {
   return (
     <div className="header">
-      <input className="searchBar" placeholder="Recherche"/>
+      <SearchBar onSearch={onSearch} />
     </div>
   );
 };

@@ -3,23 +3,23 @@ import Card from "./card.jsx";
 
 const Activities = () => {
   const [activities, setActivities] = useState([]);
+  const [query, setQuery] = useState("");
 
-  useEffect(() => {
-    const fetchActivities = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/activities");
-        if (!response.ok) {
-          throw new Error("Erreur lors de la récupération des activités");
-        }
-        const data = await response.json();
-        setActivities(data);
-      } catch (error) {
-        console.error(error.message);
+  const fetchActivities = async (searchQuery) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/search?query=${encodeURIComponent(searchQuery)}`
+      );
+      if (!response.ok) {
+        throw new Error("Erreur lors de la récupération des activités");
       }
-    };
+      const data = await response.json();
+      setActivities(data);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
-    fetchActivities();
-  }, []);
 
   return (
     <div className="activities">
