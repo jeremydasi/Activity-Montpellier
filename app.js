@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import routeActivity from "./routes/routeActivity.js"; 
 import dotenv from "dotenv";
 import cors from "cors";
-import searchBarRouter from "./routes/searchBarRouter.js";
 
 dotenv.config();
 
@@ -21,6 +20,5 @@ mongoose
   .catch((error) => console.error("Connexion à MongoDB échouée :", error));
 
 app.use('/activities', routeActivity);
-app.use('/search', searchBarRouter)
 
 export default app;
