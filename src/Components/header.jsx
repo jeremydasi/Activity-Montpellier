@@ -1,8 +1,10 @@
 import React from "react";
+import Logo from "../assets/logo.png";
 
 const Header = ({ categories = [], selectedCategory, onCategoryChange }) => {
   return (
     <div className="header">
+      <img src={Logo} alt="logo" className="logo" />
       <nav className="category-filter">
         {categories.map((category) => (
           <button
@@ -16,6 +18,7 @@ const Header = ({ categories = [], selectedCategory, onCategoryChange }) => {
           </button>
         ))}
       </nav>
+      <span></span>
     </div>
   );
 };
