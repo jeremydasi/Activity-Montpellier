@@ -1,25 +1,39 @@
-@import './color.scss';
+@import "./color.scss";
 
 .activities {
-    background-color: $activites-background;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  background-color: $activites-background;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
-    font-size: 52px;
-    font-family: "Dancing Script", cursive;
+  font-size: 52px;
+  font-family: "Dancing Script", cursive;
 }
 
 .activityNone {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 .containerActivity {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.search-bar {
+  margin: 20px;
+  text-align: center;
+}
+
+.search-bar input {
+  width: 500px;
+  height: 50px;
+  padding: 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
 }

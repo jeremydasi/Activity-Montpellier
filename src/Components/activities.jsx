@@ -8,6 +8,7 @@ const Activities = () => {
   const [filteredActivities, setFilteredActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Tous");
 
   const categories = [
@@ -29,6 +30,7 @@ const Activities = () => {
           throw new Error("Erreur lors de la récupération des activités");
         }
         const data = await response.json();
+        console.log("Données récupérées :", data);
         setActivities(data);
         setFilteredActivities(data);
       } catch (error) {
@@ -42,14 +44,24 @@ const Activities = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedCategory === "Tous") {
-      setFilteredActivities(activities);
-    } else {
-      setFilteredActivities(
-        activities.filter((activity) => activity.category === selectedCategory)
-      );
-    }
-  }, [selectedCategory, activities]);
+    if (!Array.isArray(activities)) return;
+
+    const filteredByCategory =
+      selectedCategory === "Tous"
+        ? activities
+        : activities.filter(
+            (activity) => activity.category === selectedCategory
+          );
+
+    const finalFilteredActivities = filteredByCategory.filter((activity) =>
+      (activity.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        activity.location?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        activity.category?.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      false
+    );
+
+    setFilteredActivities(finalFilteredActivities);
+  }, [searchTerm, selectedCategory, activities]);
 
   return (
     <div className="activities">
@@ -58,6 +70,15 @@ const Activities = () => {
         selectedCategory={selectedCategory}
         onCategoryChange={setSelectedCategory}
       />
+
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Rechercher une activité"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
 
       <h1 className="title">MontpellierAventure</h1>
       <Carousel />
