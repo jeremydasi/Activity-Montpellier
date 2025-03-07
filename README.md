@@ -8,4 +8,4 @@ Start the project front
 
 Start the project back
 
-`nodemon server`
+`node server.js`
